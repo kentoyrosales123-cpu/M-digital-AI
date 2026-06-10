@@ -52,10 +52,20 @@ exports.sendMessage = async (req, res) => {
   const aiMessages = history.map((m) => ({ role: m.role, content: m.content }));
 
   const route = chooseModel(message, plan);
-  const result =
-    route.provider === "ollama"
-      ? await askOllama(aiMessages, route.model)
-      : await askOpenAI(aiMessages, route.model);
+  let result;
+
+  try {
+    result =
+      route.provider === "ollama"
+        ? await askOllama(aiMessages, route.model)
+        : await askOpenAI(aiMessages, route.model);
+  } catch (err) {
+    console.error("AI Error:", err);
+
+    return res.status(500).json({
+      message: "AI service is temporarily unavailable. Please try again.",
+    });
+  }
 
   const assistantMsg = await Message.create({
     chat: chat._id,
