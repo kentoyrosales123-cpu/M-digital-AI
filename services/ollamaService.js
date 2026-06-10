@@ -4,6 +4,11 @@ async function askOllama(
 ) {
   const baseUrl = process.env.OLLAMA_BASE_URL || "http://localhost:11434";
 
+  // combine chat history into one prompt
+  const prompt = messages
+    .map((m) => `${m.role.toUpperCase()}: ${m.content}`)
+    .join("\n");
+
   const systemPrompt = `
 You are M Digital AI.
 
@@ -33,47 +38,43 @@ Credit Rules:
 Always explain credits clearly when users ask about plans or usage.
 `;
 
-  const finalMessages = [
-    {
-      role: "system",
-      content: systemPrompt,
-    },
-    ...messages,
-  ];
+  try {
+    const response = await fetch(`${baseUrl}/api/generate`, {
+      method: "POST",
 
-  const response = await fetch(`${baseUrl}/api/chat`, {
-    method: "POST",
-
-    headers: {
-      "Content-Type": "application/json",
-    },
-
-    body: JSON.stringify({
-      model,
-      messages: finalMessages,
-      stream: false,
-      keep_alive: "1h",
-
-      options: {
-        num_ctx: 2048,
-        num_predict: 300,
+      headers: {
+        "Content-Type": "application/json",
       },
-    }),
-  });
 
-  if (!response.ok) {
-    const text = await response.text();
+      body: JSON.stringify({
+        model,
+        prompt: `${systemPrompt}\n\n${prompt}`,
+        stream: false,
 
-    throw new Error(`Ollama error: ${text}`);
+        options: {
+          num_ctx: 2048,
+          num_predict: 300,
+        },
+      }),
+    });
+
+    if (!response.ok) {
+      const text = await response.text();
+
+      throw new Error(`Ollama error: ${text}`);
+    }
+
+    const data = await response.json();
+
+    return {
+      content: data.response || "",
+      tokensUsed: data.eval_count || 0,
+    };
+  } catch (err) {
+    console.error("Ollama fetch failed:", err.message);
+
+    throw err;
   }
-
-  const data = await response.json();
-
-  return {
-    content: data.message?.content || "",
-
-    tokensUsed: data.eval_count || 0,
-  };
 }
 
 module.exports = {
