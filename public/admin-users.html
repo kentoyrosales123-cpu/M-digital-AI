@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Admin Users</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="loadUsers()">
+    <div class="topbar">
+      <div class="nav">
+        <a class="btn secondary" href="/admin-dashboard.html">Dashboard</a>
+        <a class="btn secondary" href="/admin-payments.html">Payments</a>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>User Management</h1>
+        <p>Manage user accounts, roles, and account status.</p>
+      </div>
+
+      <div class="card table-card">
+        <table id="usersTable">
+          <tr>
+            <td>Loading users...</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>M Digital AI</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="initChat()">
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="brand">
+            <h2>M Digital AI</h2>
+          </div>
+
+          <button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀️</button>
+        </div>
+
+        <div class="user-card">
+          <p id="userInfo"></p>
+        </div>
+
+        <button class="new-chat" onclick="newChat()">+ New Chat</button>
+
+        <div id="chatList" class="chat-list"></div>
+
+        <div class="sidebar-bottom">
+          <a class="btn secondary" href="/payment.html"> Upgrade </a>
+
+          <a class="btn secondary" href="/profile.html"> Profile </a>
+
+          <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <div class="chat-header">
+          <div>
+            <h3>AI Assistant</h3>
+            <small>Ask anything</small>
+          </div>
+
+          <button class="secondary" onclick="deleteCurrentChat()">
+            Delete Chat
+          </button>
+        </div>
+
+        <div id="messages">
+          <div class="empty">Start asking anything.</div>
+        </div>
+
+        <form class="composer" onsubmit="sendChat(event)">
+          <input
+            type="file"
+            id="fileInput"
+            hidden
+            onchange="handleFileSelect(event)"
+          />
+
+          <div id="attachedFile" class="attached-file"></div>
+
+          <div class="chat-input-wrapper">
+            <button type="button" class="attach-btn" onclick="openFilePicker()">
+              📎
+            </button>
+
+            <textarea
+              id="messageInput"
+              placeholder="Message M Digital AI..."
+              required
+            ></textarea>
+
+            <button type="submit" class="send-btn">Send</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>

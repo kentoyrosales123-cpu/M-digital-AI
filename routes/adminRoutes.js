@@ -1,0 +1,12 @@
+const router = require('express').Router();
+const { protect } = require('../middleware/authMiddleware');
+const adminOnly = require('../middleware/adminMiddleware');
+const ctrl = require('../controllers/adminController');
+router.use(protect, adminOnly);
+router.get('/dashboard', ctrl.dashboard);
+router.get('/users', ctrl.getUsers);
+router.patch('/users/:id/status', ctrl.updateUserStatus);
+router.get('/payments', ctrl.getPayments);
+router.patch('/payments/:id/approve', ctrl.approvePayment);
+router.patch('/payments/:id/reject', ctrl.rejectPayment);
+module.exports = router;

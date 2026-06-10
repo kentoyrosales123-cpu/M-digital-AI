@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Profile | M Digital AI</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="loadProfile()">
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>M Digital AI</h2>
+
+        <a class="btn secondary" href="/chat.html">Back to Chat</a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </aside>
+
+      <main class="main profile-main">
+        <div class="profile-header">
+          <h2>Profile</h2>
+          <p>Manage your account information and subscription status.</p>
+        </div>
+
+        <section class="profile-card">
+          <div class="avatar-circle" id="profileInitial">U</div>
+
+          <div class="profile-info">
+            <h3 id="profileName">User Name</h3>
+            <p id="profileEmail">user@email.com</p>
+          </div>
+        </section>
+
+        <section class="profile-grid">
+          <div class="profile-box">
+            <span>Plan</span>
+            <strong id="profilePlan">Free Plan</strong>
+          </div>
+
+          <div class="profile-box">
+            <span>Credits Used</span>
+            <strong id="profileCredits">0 / 10</strong>
+          </div>
+
+          <div class="profile-box">
+            <span>Remaining Credits</span>
+            <strong id="profileRemaining">10</strong>
+          </div>
+
+          <div class="profile-box">
+            <span>Status</span>
+            <strong class="status-active">Active</strong>
+          </div>
+        </section>
+
+        <section class="profile-actions">
+          <a href="/payment.html" class="upgrade-profile-btn">Upgrade Plan</a>
+          <a href="/chat.html" class="back-chat-btn">Back to Chat</a>
+        </section>
+      </main>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

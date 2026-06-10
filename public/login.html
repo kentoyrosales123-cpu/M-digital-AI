@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Login | M Digital AI</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <main class="auth-page">
+      <section class="auth-card">
+        <a href="/index.html" class="back-link">← Back to Home</a>
+
+        <div class="auth-header">
+          <div class="auth-logo">🤖</div>
+          <h1>Welcome Back</h1>
+          <p>Login to continue using M Digital AI.</p>
+        </div>
+
+        <form class="auth-form" onsubmit="handleLogin(event)">
+          <label>
+            Email Address
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              required
+            />
+          </label>
+
+          <button type="submit" class="auth-submit">Login</button>
+
+          <p class="auth-switch">
+            No account yet?
+            <a href="/register.html">Create account</a>
+          </p>
+        </form>
+      </section>
+
+      <section class="auth-side">
+        <span class="hero-badge">M Digital AI</span>
+
+        <h2>Your AI assistant for study, coding, and productivity.</h2>
+
+        <p>
+          Continue your chats, manage your credits, upgrade your plan, and
+          access smarter AI assistance for school and work.
+        </p>
+
+        <div class="auth-benefits">
+          <div>💬 Continue AI chats</div>
+          <div>📊 Track AI credits</div>
+          <div>💻 Coding assistance</div>
+          <div>📎 Premium file upload</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+  </body>
+</html>

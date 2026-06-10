@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Create Account | M Digital AI</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <main class="auth-page">
+      <section class="auth-card">
+        <a href="/index.html" class="back-link">← Back to Home</a>
+
+        <div class="auth-header">
+          <div class="auth-logo">🤖</div>
+          <h1>Create Account</h1>
+          <p>
+            Start using M Digital AI for study, coding, math, and productivity.
+          </p>
+        </div>
+
+        <form class="auth-form" onsubmit="handleRegister(event)">
+          <label>
+            Full Name
+            <input
+              name="name"
+              type="text"
+              placeholder="Enter your full name"
+              required
+            />
+          </label>
+
+          <label>
+            Email Address
+            <input
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+          </label>
+
+          <label>
+            Password
+            <input
+              name="password"
+              type="password"
+              placeholder="Create a password"
+              minlength="6"
+              required
+            />
+          </label>
+
+          <button type="submit" class="auth-submit">Create Account</button>
+
+          <p class="auth-switch">
+            Already have an account?
+            <a href="/login.html">Login</a>
+          </p>
+        </form>
+      </section>
+
+      <section class="auth-side">
+        <span class="hero-badge">Free Plan Included</span>
+        <h2>Start with 10 free credits daily.</h2>
+        <p>
+          Upgrade anytime to Premium or Premium Pro for higher limits, file
+          upload, and stronger coding assistance.
+        </p>
+
+        <div class="auth-benefits">
+          <div>💬 AI chat assistant</div>
+          <div>📐 Math and engineering help</div>
+          <div>💻 Coding support</div>
+          <div>📎 Premium file upload</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/auth.js"></script>
+  </body>
+</html>

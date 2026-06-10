@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Admin Dashboard | M Digital AI</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="loadDashboard()">
+    <div class="admin-layout">
+      <aside class="admin-sidebar">
+        <h2>M Digital AI</h2>
+        <p>Admin Panel</p>
+
+        <nav>
+          <a class="active" href="/admin-dashboard.html">Dashboard</a>
+          <a href="/admin-users.html">Users</a>
+          <a href="/admin-payments.html">Payments</a>
+        </nav>
+
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </aside>
+
+      <main class="admin-main">
+        <header class="admin-header">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Monitor users, chats, messages, and payment approvals.</p>
+          </div>
+        </header>
+
+        <section id="stats" class="admin-stats-grid"></section>
+      </main>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Admin Payments</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="loadPayments()">
+    <div class="topbar">
+      <div class="brand">Payment Proofs</div>
+
+      <div class="nav">
+        <a class="btn secondary" href="/admin-dashboard.html">Dashboard</a>
+        <a class="btn secondary" href="/admin-users.html">Users</a>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>Payment Proofs</h1>
+        <p>
+          Review uploaded payment screenshots and approve or reject
+          subscriptions.
+        </p>
+      </div>
+
+      <div id="payments" class="payments-grid">
+        <div class="card">
+          <h3>Loading payments...</h3>
+          <p>Please wait.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>

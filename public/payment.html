@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Upgrade to Premium | M Digital AI</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body>
+    <main class="payment-page">
+      <a href="/chat.html" class="back-link">← Back to Chat</a>
+
+      <section class="premium-card">
+        <div class="premium-header">
+          <span class="premium-badge">Upgrade Plans</span>
+
+          <h1>Choose Your AI Plan</h1>
+
+          <p>
+            Upgrade your M Digital AI account for higher chat limits, file
+            uploads, coding assistance, and better access for school, work, and
+            productivity.
+          </p>
+        </div>
+
+        <div class="plans-section">
+          <div class="plans-grid">
+            <div class="plan-card selected">
+              <span class="plan-badge">Most Popular</span>
+
+              <h3>Premium</h3>
+
+              <div class="plan-price">₱249<span>/month</span></div>
+
+              <p class="plan-description">
+                Best for students, assignments, reviewers, and normal AI use.
+              </p>
+
+              <ul class="plan-features">
+                <li>✅ 300 Credits / Month</li>
+                <li>✅ File upload enabled</li>
+                <li>✅ Coding assistance</li>
+                <li>✅ Student and productivity support</li>
+                <li>✅ Priority access</li>
+              </ul>
+
+              <button
+                type="button"
+                class="select-plan-btn"
+                onclick="selectPlan('Premium', 249)"
+              >
+                Select Premium
+              </button>
+            </div>
+
+            <div class="plan-card premium-pro">
+              <span class="plan-badge pro">Best for Coding</span>
+
+              <h3>Premium Pro</h3>
+
+              <div class="plan-price">₱599<span>/month</span></div>
+
+              <p class="plan-description">
+                Best for heavy coding, large file analysis, and system building.
+              </p>
+
+              <ul class="plan-features">
+                <li>🚀 1000 Credits / Month</li>
+                <li>🚀 Heavy coding support</li>
+                <li>🚀 Large file analysis</li>
+                <li>🚀 Full system generation help</li>
+                <li>🚀 Higher priority access</li>
+              </ul>
+
+              <button
+                type="button"
+                class="select-plan-btn pro-btn"
+                onclick="selectPlan('Premium Pro', 599)"
+              >
+                Select Premium Pro
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="benefits-section">
+          <h2>Premium Advantages</h2>
+
+          <div class="benefits-grid">
+            <div class="benefit-box">
+              <h3>💬 More AI Chats</h3>
+              <p>Enjoy higher usage compared to free users.</p>
+            </div>
+
+            <div class="benefit-box">
+              <h3>📎 File Upload</h3>
+              <p>
+                Upload files and let AI read documents, assignments, and coding
+                files.
+              </p>
+            </div>
+
+            <div class="benefit-box">
+              <h3>💻 Coding Assistance</h3>
+              <p>
+                Get help in programming, debugging, web development, and system
+                creation.
+              </p>
+            </div>
+
+            <div class="benefit-box">
+              <h3>⚡ Priority Access</h3>
+              <p>
+                Better AI access and smoother experience during busy periods.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-details-box">
+          <h2>Plan Details</h2>
+
+          <div class="plan-table">
+            <div class="plan-row">
+              <span>Free Plan</span>
+              <strong>10 Credits / Day</strong>
+            </div>
+
+            <div class="plan-row">
+              <span>Premium</span>
+              <strong>300 Credits / Month</strong>
+            </div>
+
+            <div class="plan-row">
+              <span>Premium Pro</span>
+              <strong>1000 Credits / Month</strong>
+            </div>
+
+            <div class="plan-row">
+              <span>Credit Usage</span>
+              <strong>
+                Simple chat = lower credits, coding & file analysis = higher
+                credits
+              </strong>
+            </div>
+
+            <div class="plan-row">
+              <span>File Upload</span>
+              <strong>Premium and Premium Pro only</strong>
+            </div>
+          </div>
+
+          <div class="usage-note">
+            <h3>Fair Usage Policy</h3>
+
+            <p>
+              Premium subscription is intended for normal educational,
+              productivity, assignment, reviewer, and coding assistance use.
+            </p>
+
+            <p>
+              Extremely heavy coding, repeated full-system generation, very
+              large file analysis, or unusually high AI usage may be subject to
+              fair usage limits to maintain service quality.
+            </p>
+          </div>
+        </div>
+
+        <div class="gcash-box">
+          <h2>Payment Details</h2>
+
+          <div class="selected-plan-box">
+            <p>
+              <strong>Selected Plan:</strong>
+              <span id="selectedPlanText">Premium</span>
+            </p>
+          </div>
+
+          <div class="payment-info">
+            <p>
+              <strong>GCash Name:</strong>
+              Your Business Name
+            </p>
+
+            <p>
+              <strong>GCash Number:</strong>
+              09385534711
+            </p>
+          </div>
+
+          <form class="payment-form" onsubmit="submitPaymentProof(event)">
+            <input
+              type="hidden"
+              id="selectedPlanInput"
+              name="plan"
+              value="Premium"
+            />
+
+            <input
+              type="number"
+              id="amountInput"
+              name="amount"
+              value="249"
+              placeholder="Amount"
+              required
+              readonly
+            />
+
+            <input
+              type="text"
+              name="referenceNumber"
+              placeholder="GCash reference number"
+              required
+            />
+
+            <label class="upload-proof">
+              📸 Upload Screenshot
+              <input
+                type="file"
+                name="proofImage"
+                accept="image/*"
+                required
+                hidden
+              />
+            </label>
+
+            <button type="submit">Submit Proof</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/payment.js"></script>
+  </body>
+</html>

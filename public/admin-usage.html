@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Admin Usage</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+
+  <body onload="loadDashboard()">
+    <div class="topbar">
+      <div class="brand">AI Usage</div>
+
+      <div class="nav">
+        <a class="btn secondary" href="/admin-dashboard.html">Dashboard</a>
+        <a class="btn secondary" href="/admin-users.html">Users</a>
+        <a class="btn secondary" href="/admin-payments.html">Payments</a>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>AI Usage Overview</h1>
+        <p>
+          Monitor total users, premium users, chats, messages, and pending
+          payments.
+        </p>
+      </div>
+
+      <div class="card usage-info">
+        <h3>Usage Summary</h3>
+        <p>
+          Basic AI usage is shown through dashboard totals. Advanced per-user
+          token reports, model usage, and daily usage analytics can be added in
+          Phase 2.
+        </p>
+      </div>
+
+      <div id="stats" class="grid">
+        <div class="card">
+          <h3>Loading...</h3>
+          <p>Please wait</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
