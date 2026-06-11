@@ -18,7 +18,7 @@ async function loadMe() {
 
   const used = user.creditUsed || 0;
 
-  const limit = user.creditLimit || 10;
+  const limit = user.creditLimit || 30;
 
   const remaining = Math.max(limit - used, 0);
 
@@ -59,6 +59,10 @@ async function openChat(id) {
 
     messagesBox.innerHTML = data.messages.map(renderMessage).join("");
 
+    if (window.MathJax) {
+      MathJax.typesetPromise();
+    }
+
     scrollBottom();
   } catch (err) {
     messagesBox.innerHTML =
@@ -93,6 +97,10 @@ async function sendChat(e) {
     activeChatId = data.chat._id;
     document.getElementById("loading").remove();
     box.insertAdjacentHTML("beforeend", renderMessage(data.assistant));
+
+    if (window.MathJax) {
+      MathJax.typesetPromise();
+    }
     await loadChats();
     await loadMe();
     scrollBottom();

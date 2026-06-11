@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
 
     creditLimit: {
       type: Number,
-      default: 10,
+      default: 30,
     },
 
     creditResetAt: {

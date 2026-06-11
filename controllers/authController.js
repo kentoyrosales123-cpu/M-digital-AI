@@ -28,8 +28,20 @@ exports.login = async (req, res) => {
 };
 
 exports.me = async (req, res) => {
-  const subscription = await Subscription.findOne({ user: req.user._id });
-  res.json({ user: safeUser(req.user), subscription });
+  // Auto-fix old free users
+  if (req.user.plan === "free" && req.user.creditLimit !== 30) {
+    req.user.creditLimit = 30;
+    await req.user.save();
+  }
+
+  const subscription = await Subscription.findOne({
+    user: req.user._id,
+  });
+
+  res.json({
+    user: safeUser(req.user),
+    subscription,
+  });
 };
 
 function safeUser(user) {

@@ -39,6 +39,8 @@ Always explain credits clearly when users ask about plans or usage.
 `;
 
   try {
+    console.log("Calling Ollama:", `${baseUrl}/api/generate`);
+    console.log("Using model:", model);
     const response = await fetch(`${baseUrl}/api/generate`, {
       method: "POST",
 
@@ -52,8 +54,8 @@ Always explain credits clearly when users ask about plans or usage.
         stream: false,
 
         options: {
-          num_ctx: 2048,
-          num_predict: 300,
+          num_ctx: 4096,
+          num_predict: 2000,
         },
       }),
     });
@@ -61,7 +63,10 @@ Always explain credits clearly when users ask about plans or usage.
     if (!response.ok) {
       const text = await response.text();
 
-      throw new Error(`Ollama error: ${text}`);
+      console.error("Ollama status:", response.status);
+      console.error("Ollama response:", text);
+
+      throw new Error(`Ollama error ${response.status}: ${text}`);
     }
 
     const data = await response.json();

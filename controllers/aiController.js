@@ -31,8 +31,10 @@ exports.sendMessage = async (req, res) => {
     (!sub.endDate || sub.endDate > new Date())
       ? "premium"
       : "free";
+  const route = chooseModel(message, plan);
+  const creditCost = getCreditCost(route.difficulty, req.user.plan);
   try {
-    await enforceCreditLimit(req.user);
+    await enforceCreditLimit(req.user, creditCost);
   } catch (err) {
     return res.status(err.status || 500).json({
       message: err.message,
@@ -51,7 +53,6 @@ exports.sendMessage = async (req, res) => {
     .limit(8);
   const aiMessages = history.map((m) => ({ role: m.role, content: m.content }));
 
-  const route = chooseModel(message, plan);
   let result;
 
   try {
@@ -84,19 +85,58 @@ exports.sendMessage = async (req, res) => {
     await chat.save();
   }
 
-  res.json({ chat, assistant: assistantMsg, model: route.label });
+  res.json({
+    chat,
+    assistant: assistantMsg,
+    model: route.label,
+    difficulty: route.difficulty,
+    creditCost,
+  });
 };
 
-async function enforceCreditLimit(user) {
+function getCreditCost(difficulty, plan) {
+  const creditTable = {
+    free: {
+      easy: 1,
+      average: 1,
+      difficult: 2,
+      very_difficult: 3,
+    },
+
+    premium: {
+      easy: 1,
+      average: 2,
+      difficult: 3,
+      very_difficult: 5,
+    },
+
+    premium_pro: {
+      easy: 1,
+      average: 1,
+      difficult: 2,
+      very_difficult: 3,
+    },
+  };
+
+  return creditTable[plan]?.[difficulty] || 1;
+}
+
+async function enforceCreditLimit(user, creditCost = 1) {
   const now = new Date();
+  // Auto-fix old users
+  if (user.plan === "free" && user.creditLimit !== 30) {
+    user.creditLimit = 30;
+    await user.save();
+  }
 
   // Reset credits automatically
   if (now >= user.creditResetAt) {
     user.creditUsed = 0;
 
     // FREE PLAN
+    // FREE PLAN
     if (user.plan === "free") {
-      user.creditLimit = 10;
+      user.creditLimit = 30;
 
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
@@ -130,7 +170,7 @@ async function enforceCreditLimit(user) {
   }
 
   // No credits left
-  if (user.creditUsed >= user.creditLimit) {
+  if (user.creditUsed + creditCost > user.creditLimit) {
     const err = new Error("You have reached your credit limit.");
 
     err.status = 429;
@@ -141,7 +181,7 @@ async function enforceCreditLimit(user) {
   }
 
   // Deduct 1 credit
-  user.creditUsed += 1;
+  user.creditUsed += creditCost;
 
   await user.save();
 }

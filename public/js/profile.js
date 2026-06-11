@@ -12,7 +12,7 @@ async function loadProfile() {
     }
 
     const used = user.creditUsed || 0;
-    const limit = user.creditLimit || 10;
+    const limit = user.creditLimit || 30;
     const remaining = Math.max(limit - used, 0);
 
     document.getElementById("profileName").textContent = user.name;
